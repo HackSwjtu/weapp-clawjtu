@@ -1,0 +1,9 @@
+<view class="view_top_banner">
+    <view class="view_banner_elements">
+        <image class="image_banner_avatar" mode="aspectFill" src="{{userInfo.avatarUrl}}"/>
+        <text class="text_banner">{{userInfo.nickName}}</text>
+    </view>
+    <view class="view_banner_elements">
+        <image class="image_banner_button" mode="scaleToFill" src="../../images/index/collect.png" />
+    </view>
+</view>

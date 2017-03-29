@@ -1,6 +1,6 @@
 {
   "pages":[
-    "app/index"
+    "app/index/index"
   ],
   "window":{
     "backgroundTextStyle":"light",
