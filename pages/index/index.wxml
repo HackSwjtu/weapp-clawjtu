@@ -1,42 +1,13 @@
 <scroll-view id="post-container" scroll-y="true" enable-back-to-top="true">
-    <view class="post">
+    <view class="post" wx:for="{{posts}}" wx:for-item="post">
         <view class="post-info">
-            <text class="post-title">西南交通大学 ACM 程序设计大赛 第一次网络赛</text>
-            <view class="post-description">
-                <text>级别：校级</text>
-                <text>地点：线上比赛 http://swjtuoj.com/</text>
-                <text>时间：2017年3月28日（周二）10:00-11:00</text>
+            <text class="post-title">{{post.title}}</text>
+            <view class="post-description" wx:for="{{post.descriptions}}" wx:for-item="description">
+                <text>{{description.type}}：{{description.content}}</text>
             </view>
             <image class="icon post-love" src="../../images/like.png"></image>
         </view>
         <view class="post-hr"></view>
-        <view class="post-preview">尽管明天有考试，只要今天没AC。模拟只会猜题意，贪心只能过样例，数学上来先打表，DP一般看规律。 组合数学靠运气，计算几何瞎暴力，图论一顿套模板，数论只会GCD。</view>
-    </view>
-    <view class="post">
-        <view class="post-info">
-            <text class="post-title">西南交通大学 ACM 程序设计大赛 </text>
-            <view class="post-description">
-                <text>级别：校级</text>
-                <text>地点：线上比赛 http://swjtuoj.com/线上比赛</text>
-                <text>时间：2017年3月28日（周二）10:00-11:00</text>
-            </view>
-            <image class="icon post-love" src="../../images/like.png"></image>
-        </view>
-        <view class="post-hr"></view>
-        <view class="post-preview">尽管明天有考试，只要今天没AC。模拟只会猜题意，贪心只能过样例，数学上来先打表，DP一般看规律。 组合数学靠运气，计算几何瞎暴力，图论一顿套模板，数论只会GCD。尽管明天有考试，只要今天没AC。模拟只会猜题意，贪心只能过样例，数学上来先打表，DP一般看规律。 组合数学靠运气，计算几何瞎暴力，图论一顿套模板，数论只会GCD。尽管明天有考试，只要今天没AC。模拟只会猜题意，贪心只能过样例，数学上来先打表，DP一般看规律。 组合数学靠运气，计算几何瞎暴力，图论一顿套模板，数论只会GCD。尽管明天有考试，只要今天没AC。模拟只会猜题意，贪心只能过样例，数学上来先打表，DP一般看规律。 组合数学靠运气，计算几何瞎暴力，图论一顿套模板，数论只会GCD。尽管明天有考试，只要今天没AC。模拟只会猜题意，贪心只能过样例，数学上来先打表，DP一般看规律。 组合数学靠运气，计算几何瞎暴力，图论一顿套模板，数论只会GCD。尽管明天有考试，只要今天没AC。模拟只会猜题意，贪心只能过样例，数学上来先打表，DP一般看规律。 组合数学靠运气，计算几何瞎暴力，图论一顿套模板，数论只会GCD。尽管明天有考试，只要今天没AC。模拟只会猜题意，贪心只能过样例，数学上来先打表，DP一般看规律。 组合数学靠运气，计算几何瞎暴力，图论一顿套模板，数论只会GCD。</view>
-    </view>
-    <view class="post">
-        <view class="post-info">
-            <text class="post-title">西南交通大学 ACM 程序设计大赛 第一次网络赛</text>
-            <view class="post-description">
-                <text>级别：校级</text>
-                <text>地点：线上比赛 http://swjtuoj.com/</text>
-                <text>时间：2017年3月28日（周二）10:00-11:00</text>
-            </view>
-            <image class="icon post-love" src="../../images/like.png"></image>
-        </view>
-        <view class="post-hr"></view>
-        <view class="post-preview">尽管明天有考试，只要今天没AC。模拟只会猜题意，贪心只能过样例，数学上来先打表，DP一般看规律。 组合数学靠运气，计算几何瞎暴力，图论一顿套模板，数论只会GCD。</view>
     </view>
 </scroll-view>
 <view id="banner">
