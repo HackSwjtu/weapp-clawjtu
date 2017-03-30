@@ -21,7 +21,7 @@
     --padding: 30rpx;
     --margin: 30rpx;
     margin: var(--margin);
-    border-radius: 16rpx;
+    border-radius: 8rpx;
     background-color: white;
     box-shadow: 0 4rpx 8rpx 2rpx rgba(0, 0, 0, 0.25);
 }
@@ -34,6 +34,9 @@
     color: rgb(88, 89, 91);
     font-weight: 700;
 }
+.post-description {
+    margin-top:10px;
+}
 .post-description text {
     display: block;
     font-size: 24rpx;
@@ -45,9 +48,15 @@
     width: 100%;
     background-color: rgb(198, 186, 186);
 }
+.post-blank-hr {
+    display: block;
+    height: 5rpx;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0);
+}
 .post-preview {
     padding: var(--padding);
-    font-size: 32rpx;
+    font-size: 28rpx;
     color: rgb(88, 89, 91);
 }
 .post-love {

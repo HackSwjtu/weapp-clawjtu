@@ -2,7 +2,7 @@ page {
     position: relative;
     height: 100%;
     width: 100%;
-    --tablet-height: 106rpx;
+    --tablet-height: 90rpx;
     --banner-height: 152rpx;
     font-family: 等线, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
@@ -34,8 +34,8 @@ page {
     background-color: white;
 }
 .icon {
-    height: 64rpx;
-    width: 64rpx;
+    height: 50rpx;
+    width: 50rpx;
 }
 .icon.active {
     filter: brightness(2);
