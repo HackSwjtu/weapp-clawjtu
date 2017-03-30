@@ -7,8 +7,8 @@
 }
 #favorite {
     margin-right: 60rpx;
-    height: 59rpx;
-    width: 59rpx;
+    height: 50rpx;
+    width: 50rpx;
 }
 #post-container {
     --margin: 30rpx;
@@ -23,7 +23,7 @@
     position: relative;
     --padding: 30rpx;
     margin: var(--margin);
-    border-radius: 16rpx;
+    border-radius: 8rpx;
     background-color: white;
     box-shadow: 0 4rpx 8rpx 2rpx rgba(0, 0, 0, 0.25);
 }
@@ -36,6 +36,9 @@
     color: rgb(88, 89, 91);
     font-weight: 700;
 }
+.post-description {
+    margin-top:10px;
+ }
 .post-description text {
     display: block;
     font-size: 24rpx;
@@ -49,7 +52,7 @@
 }
 .post-preview {
     padding: var(--padding);
-    font-size: 32rpx;
+    font-size: 28rpx;
     color: rgb(88, 89, 91);
 }
 .post-love {
@@ -59,6 +62,7 @@
     background-image: url(../../images/love.png);
     background-size: contain;
     background-position: cener center;
+    height: 25;
 }
 .post-love.unloved {
     filter: grayscale();

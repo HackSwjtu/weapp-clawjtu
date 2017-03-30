@@ -1,8 +1,8 @@
 <scroll-view id="post-container" scroll-y="true" enable-back-to-top="true">
-    <view class="post" wx:for="{{posts}}" wx:for-item="post">
+    <view class="post" wx:for="{{posts}}" wx:for-item="post" wx:key="post">
         <view class="post-info">
             <text class="post-title">{{post.title}}</text>
-            <view class="post-description" wx:for="{{post.descriptions}}" wx:for-item="description">
+            <view class="post-description" wx:for="{{post.descriptions}}" wx:for-item="description" wx:key="post-descriptions">
                 <text>{{description.type}}：{{description.content}}</text>
             </view>
             <view class="icon post-love {{post.loved}}"></view>
