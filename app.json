@@ -1,11 +1,5 @@
 {
   "pages":[
-    "app/index/index"
-  ],
-  "window":{
-    "backgroundTextStyle":"light",
-    "navigationBarBackgroundColor": "#12345",
-    "navigationBarTitleText": "Clawjtu",
-    "navigationBarTextStyle":"white"
-  }
+    "pages/index/index"
+  ]
 }

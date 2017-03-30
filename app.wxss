@@ -1,9 +1,42 @@
-.container {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  padding: 200rpx 0;
-  box-sizing: border-box;
+page {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    --tablet-height: 106rpx;
+    --banner-height: 152rpx;
+    font-family: 等线, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.w100p {
+    width: 100%;
+}
+#banner {
+    position: absolute;
+    top: 0;
+    height: var(--banner-height);
+    width: 100%;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 0 16rpx rgba(0, 0, 0, 0.5);
+    background-color: #F6F6F6;
+}
+#tablet {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: absolute;
+    bottom: 0;
+    height: var(--tablet-height);
+    box-shadow: 0 0 16rpx rgba(0, 0, 0, 0.5);
+}
+.tablet {
+    flex-grow: 1;
+    text-align: center;
+    background-color: white;
+}
+.icon {
+    height: 64rpx;
+    width: 64rpx;
+}
+.icon.active {
+    filter: brightness(2);
 }

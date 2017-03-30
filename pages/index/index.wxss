@@ -1,1 +1,57 @@
-/* pages/index/index.wxss */
+#avatar {
+    display: block;
+    margin: 20rpx 40rpx 20rpx 60rpx;
+    height: 112rpx;
+    width: 112rpx;
+    border-radius: 50%;
+}
+#favorite {
+    margin-right: 60rpx;
+    height: 59rpx;
+    width: 59rpx;
+}
+#post-container {
+    position: absolute;
+    top: var(--banner-height);
+    height: calc(100% - var(--banner-height) - var(--tablet-height));
+    width: calc(100% - 2 * var(--padding));
+    background-color: #FAFAFA;
+}
+.post {
+    --padding: 30rpx;
+    --margin: 30rpx;
+    margin: var(--margin);
+    border-radius: 16rpx;
+    background-color: white;
+    box-shadow: 0 4rpx 8rpx 2rpx rgba(0, 0, 0, 0.25);
+}
+.post-info {
+    position: relative;
+    padding: var(--padding);
+}
+.post-title {
+    font-size: 32rpx;
+    color: rgb(88, 89, 91);
+    font-weight: 700;
+}
+.post-description text {
+    display: block;
+    font-size: 24rpx;
+    color: rgb(187, 187, 188);
+}
+.post-hr {
+    display: block;
+    height: 1rpx;
+    width: 100%;
+    background-color: rgb(198, 186, 186);
+}
+.post-preview {
+    padding: var(--padding);
+    font-size: 32rpx;
+    color: rgb(88, 89, 91);
+}
+.post-love {
+    position: absolute;
+    right: var(--padding);
+    bottom: var(--padding);
+}
