@@ -11,15 +11,17 @@
     width: 59rpx;
 }
 #post-container {
+    --margin: 30rpx;
     position: absolute;
     top: var(--banner-height);
+    padding-bottom: var(--margin);
     height: calc(100% - var(--banner-height) - var(--tablet-height));
-    width: calc(100% - 2 * var(--padding));
+    width: 100%;
     background-color: #FAFAFA;
 }
 .post {
+    position: relative;
     --padding: 30rpx;
-    --margin: 30rpx;
     margin: var(--margin);
     border-radius: 16rpx;
     background-color: white;
