@@ -1,47 +1,38 @@
-var rootDocument = 'http://luluqiao.jonathan-li.cn';
-
-function getLastweekLecture(cb) {
-    wx.request({
-      url: rootDocument + "/lecture/lastweek",
-      data: {},
-      method: 'GET', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
-      // header: {}, // 设置请求的 header
-      success: function(res) {
-        // success
-        return typeof cb == "function" && cb(res.data);
-      },
-      fail: function(res) {
-        // fail
-        return typeof cb == "function" && cb(false);
-      },
-      complete: function(res) {
-        // complete
-        console.log("Get lastweek lecture data! ")
-      }
-    })
+var rootURL = 'http://luluqiao.jonathan-li.cn';
+var requestBase = function() {
+  this.url = '';
+  this.data = {};
+  this.success = res => typeof cb == "function" && cb(res.data);
+  this.fail = res => typeof cb == "function" && cb(false);
+  this.complete = () => {};
 }
-
-function getLectureByKey(keyword, cb) {
-    wx.request({
-      url: root + '/lecture/search?keyword=' + keyword,
-      data: {},
-      method: 'GET', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
-      // header: {}, // 设置请求的 header
-      success: function(res){
-        // success
-        return typeof cb == "function" && cb(res.data);
-      },
-      fail: function(res) {
-        // fail
-        return typeof cb == "function" && cb(false);
-      },
-      complete: function(res) {
-        // complete
-        console.log("Get the lecture by keyword! ")
-      }
-    })
+requestBase.prototype = {
+  Copy() {
+    var copy = {}, v;
+    Object.keys(requestBase).forEach((k, v) => {
+      if(requestBase.prototype[k] === undefined && (v = requestBase[k]) !== undefined)
+        copy[k] = v;
+    });
+    return copy;
+  },
+  Set(obj) {
+    Object.keys(obj).forEach((k, v) => {
+      if(obj.prototype[k] === undefined && (v = obj[k]) !== undefined)
+        this[k] = v;
+    });
+    return this;
+  }
 }
-
+var getLastweekLecture = cb => wx.request(
+  new requestBase()
+  .Set("url", rootURL + "/lecture/lastweek")
+  .Set("complete", res => console.log("Get lastweek lecture data! "))
+);
+var getLectureByKey = cb => wx.request(
+  new requestBase()
+  .Set("url", rootURL + '/lecture/search?keyword=' + keyword)
+  .Set("complete", res => console.log("Get the lecture by keyword! "))
+);
 module.exports = {
     getLastweekLecture: getLastweekLecture,
     getLectureByKey: getLectureByKey,
