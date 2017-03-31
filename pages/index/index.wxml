@@ -1,5 +1,5 @@
 <scroll-view id="post-container" scroll-y="true" enable-back-to-top="true">
-    <view class="post" wx:for="{{posts}}" wx:for-item="post" wx:key="post">
+    <navigator wx:for="{{posts}}" wx:for-item="post" wx:key="post" url="../speech/speech?id={{post.id}}"><view class="post">
         <view class="post-info">
             <text class="post-title">{{post.title}}</text>
             <view class="post-description" wx:for="{{post.descriptions}}" wx:for-item="description" wx:key="post-descriptions">
@@ -9,7 +9,7 @@
         </view>
         <view class="hr"></view>
         <view class="post-preview">{{post.preview}}</view>
-    </view>
+    </view></navigator>
 </scroll-view>
 <view id="banner">
     <image id="avatar" src="{{userInfo.avatarUrl}}" mode="aspectFit"></image>
