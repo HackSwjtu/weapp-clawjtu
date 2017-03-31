@@ -18,7 +18,7 @@
     <image id="favorite" src="../../images/favorite.png" mode="aspectFit"></image>
 </view>
 <view id="tablet" class="w100p">
-    <navigator class="tablet" url="../content/content">
+    <navigator class="tablet" url="../speech/speech">
         <image src="../../images/speech.png" class="icon"></image>
     </navigator>
     <view class="tablet">

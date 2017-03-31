@@ -6,6 +6,7 @@ page {
     --banner-height: 152rpx;
     font-family: 等线, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: #FAFAFA;
+    color: rgb(88, 89, 91);
 }
 .w100p {
     width: 100%;
@@ -43,7 +44,7 @@ page {
 }
 .hr {
     display: block;
-    height: 1rpx;
+    height: 1px;
     width: 100%;
     background-color: rgb(198, 186, 186);
 }
