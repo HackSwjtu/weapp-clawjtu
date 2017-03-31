@@ -1,0 +1,10 @@
+<view id="title" class="content-block">{{speech.title}}<text class="medal icon" style="vertical-align: middle"></text></view>
+<view class="hr"></view>
+<view class="content-block">
+    <text class="speech-description" wx:for="{{speech.descriptions}}" wx:for-item="description">{{description.type}}：{{description.content}}</text>
+</view>
+<view class="hr"></view>
+<view class="content-block" wx:for="{{speech.blocks}}" wx:for-item="block">
+    <view class="content-title">{{block.type}}</view>
+    <view class="content-text">{{block.content}}</view>
+</view>
