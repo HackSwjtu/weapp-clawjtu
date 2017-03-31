@@ -3,9 +3,9 @@
         <view class="post-info">
             <text class="post-title">{{post.title}}</text>
             <view class="post-description" wx:for="{{post.descriptions}}" wx:for-item="description" wx:key="post-descriptions">
-                <text>{{description.type}}：{{description.content}}</text>
+                <text>{{description}}</text>
             </view>
-            <view class="icon post-love {{post.loved}}"></view>
+            <!--<view class="icon post-love {{post.loved}}"></view>-->
         </view>
         <view class="hr"></view>
         <view class="post-preview">{{post.preview}}</view>

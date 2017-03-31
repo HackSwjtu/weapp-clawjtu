@@ -8,23 +8,17 @@
     background-position: center center;
     background-size: contain;
 }
-.speech-description {
-    display: block;
-    font-size: 32rpx;
-    font-weight: 700;
-}
 .content-block {
     --vmargin: 30rpx;
     --hmargin: 60rpx;
     margin: var(--vmargin) var(--hmargin);
 }
-.content-title {
-    font-weight: 700;
+.speech-description {
+    display: block;
     font-size: 32rpx;
-    margin-bottom: calc(var(--vmargin) / 2);
+    font-weight: 700;
 }
-.content-text {
+#content {
     font-size: 30rpx;
-    margin-top: var(--vpadding);
     line-height: 125%;
 }
