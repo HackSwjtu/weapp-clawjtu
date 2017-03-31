@@ -1,0 +1,21 @@
+#title {
+    font-size: 48rpx;
+    font-weight: 700;
+}
+.medal {
+    display: inline-block;
+    background-image: url(../../images/medal.png);
+    background-position: center center;
+    background-size: contain;
+}
+.content-block {
+    --padding: 30rpx;
+    padding: var(--padding);
+}
+#descriptions {
+    font-size: 32rpx;
+    font-weight: 700;
+}
+#descriptions text {
+    display: block;
+}

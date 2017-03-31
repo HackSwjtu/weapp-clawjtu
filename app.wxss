@@ -5,6 +5,7 @@ page {
     --tablet-height: 90rpx;
     --banner-height: 152rpx;
     font-family: 等线, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #FAFAFA;
 }
 .w100p {
     width: 100%;
@@ -39,4 +40,10 @@ page {
 }
 .icon.active {
     filter: brightness(2);
+}
+.hr {
+    display: block;
+    height: 1rpx;
+    width: 100%;
+    background-color: rgb(198, 186, 186);
 }

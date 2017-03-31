@@ -7,7 +7,7 @@
             </view>
             <view class="icon post-love {{post.loved}}"></view>
         </view>
-        <view class="post-hr"></view>
+        <view class="hr"></view>
         <view class="post-preview">{{post.preview}}</view>
     </view>
 </scroll-view>
@@ -18,9 +18,9 @@
     <image id="favorite" src="../../images/favorite.png" mode="aspectFit"></image>
 </view>
 <view id="tablet" class="w100p">
-    <view class="tablet">
+    <navigator class="tablet" url="../content/content">
         <image src="../../images/speech.png" class="icon"></image>
-    </view>
+    </navigator>
     <view class="tablet">
         <image src="../../images/trophy.png" class="icon"></image>
     </view>

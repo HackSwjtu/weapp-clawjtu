@@ -1,5 +1,6 @@
 {
   "pages":[
+    "pages/content/content",
     "pages/index/index"
   ]
 }
