@@ -8,7 +8,7 @@
             <!--<view class="icon post-love {{post.loved}}"></view>-->
         </view>
         <view class="hr"></view>
-        <view class="post-preview">{{post.preview}}</view>
+        <view class="post-preview">{{post.content}}</view>
     </view></navigator>
 </scroll-view>
 <view id="banner">

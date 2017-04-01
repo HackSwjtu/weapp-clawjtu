@@ -1,5 +1,4 @@
 {
-    let _MAX_PREVIEW_LENGTH = 25;
     let posts;
     let ParsePost = post => {
         post.time = "讲座时间：" + post.time;
@@ -15,7 +14,6 @@
                 post.time,
                 post.place
             ],
-            preview: post.detail.slice(0, _MAX_PREVIEW_LENGTH),
             content: post.detail
         };
         return result;
