@@ -1,6 +1,11 @@
 {
-    let _MAX_PREVIEW_LENGTH = 100;
+    let _MAX_PREVIEW_LENGTH = 25;
     let posts;
+    let GetDetail = str => {
+        str = str.slice(0, str.indexOf('>>我要'));
+        str = str.slice(str.indexOf('讲座内容：') + 5);
+        return str;
+    };
     let HandleUserInfo = (cb, userInfo) => {
         if(typeof cb == 'function')
             cb(userInfo);
@@ -21,17 +26,21 @@
                 },
                 success: function(res) {
                     let _posts = res.data.lecture;
-                    _posts = _posts.map(post => ({
-                        title: post.title,
-                        id: post.id,
-                        descriptions: [
-                            post.speaker,
-                            post.time,
-                            post.place
-                        ],
-                        preview: post.detail.slice(0, _MAX_PREVIEW_LENGTH),
-                        content: post.detail
-                    }));
+                    _posts = _posts.map(post => {
+                        let detail = GetDetail(post.detail);
+                        return {
+                            title: post.title,
+                            id: post.id,
+                            descriptions: [
+                                post.speaker,
+                                post.time,
+                                post.place
+                            ],
+                            preview: detail.slice(0, _MAX_PREVIEW_LENGTH),
+                            content: detail
+                        };
+                    });
+                    
                     posts = _posts;
                     cb(posts);
                 }
