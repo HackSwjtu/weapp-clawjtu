@@ -1,10 +1,24 @@
 {
     let _MAX_PREVIEW_LENGTH = 25;
     let posts;
-    let GetDetail = str => {
-        str = str.slice(0, str.indexOf('>>我要'));
-        str = str.slice(str.indexOf('讲座内容：') + 5);
-        return str;
+    let ParsePost = post => {
+        post.time = "讲座时间：" + post.time;
+        ['speaker', 'time', 'place'].forEach(key => post[key] = post[key].replace(/ ?[：:] ?/, '：'));
+        post.detail = post.detail
+            .slice(0, post.detail.indexOf('>>我要'))
+            .slice(post.detail.indexOf('讲座内容：') + 5);
+        let result =  {
+            title: post.title,
+            id: post.id,
+            descriptions: [
+                post.speaker,
+                post.time,
+                post.place
+            ],
+            preview: post.detail.slice(0, _MAX_PREVIEW_LENGTH),
+            content: post.detail
+        };
+        return result;
     };
     let HandleUserInfo = (cb, userInfo) => {
         if(typeof cb == 'function')
@@ -26,20 +40,7 @@
                 },
                 success: function(res) {
                     let _posts = res.data.lecture;
-                    _posts = _posts.map(post => {
-                        let detail = GetDetail(post.detail);
-                        return {
-                            title: post.title,
-                            id: post.id,
-                            descriptions: [
-                                post.speaker,
-                                post.time,
-                                post.place
-                            ],
-                            preview: detail.slice(0, _MAX_PREVIEW_LENGTH),
-                            content: detail
-                        };
-                    });
+                    _posts = _posts.map(ParsePost);
                     
                     posts = _posts;
                     cb(posts);
