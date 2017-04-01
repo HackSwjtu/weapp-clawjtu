@@ -1,8 +1,8 @@
 <scroll-view id="post-container" scroll-y="true" enable-back-to-top="true">
-    <navigator wx:for="{{posts}}" wx:for-item="post" wx:key="post" url="../speech/speech?id={{post.id}}"><view class="post">
+    <navigator wx:for="{{posts}}" wx:for-item="post" url="../speech/speech?id={{post.id}}" wx:key="null"><view class="post">
         <view class="post-info">
             <text class="post-title">{{post.title}}</text>
-            <view class="post-description" wx:for="{{post.descriptions}}" wx:for-item="description" wx:key="post-descriptions">
+            <view class="post-description" wx:for="{{post.descriptions}}" wx:for-item="description" wx:key="null">
                 <text>{{description}}</text>
             </view>
             <!--<view class="icon post-love {{post.loved}}"></view>-->
@@ -19,9 +19,9 @@
 </view>
 <view id="tablet" class="w100p">
     <navigator class="tablet" open-type="redirectTo" url="../index/index">
-        <image src="../../images/speech.png" class="icon"></image>
+        <image src="../../images/speech.png" class="icon active"></image>
     </navigator>
     <view class="tablet" bindtap="tapCompetition">
-        <image src="../../images/trophy.png" class="icon active"></image>
+        <image src="../../images/trophy.png" class="icon"></image>
     </view>
 </view>
