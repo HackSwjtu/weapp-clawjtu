@@ -29,6 +29,7 @@ page {
     bottom: 0;
     height: var(--tablet-height);
     box-shadow: 0 0 16rpx rgba(0, 0, 0, 0.5);
+    background-color: white;
 }
 .tablet {
     flex-grow: 1;
