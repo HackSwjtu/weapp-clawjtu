@@ -1,5 +1,7 @@
 {
-    let posts;
+    let posts, favorites = wx.getStorageSync('favorites');
+    if(!(favorites instanceof Array))
+        favorites = [];
     let ParsePost = post => {
         post.time = "讲座时间：" + post.time;
         ['speaker', 'time', 'place'].forEach(key => post[key] = post[key].replace(/ ?[：:] ?/, '：'));
@@ -14,7 +16,8 @@
                 post.time,
                 post.place
             ],
-            content: post.detail
+            content: post.detail,
+            loved: favorites.some(id => id == post.id) ? "loved" : "unloved"
         };
         return result;
     };
@@ -36,13 +39,7 @@
                 header: {
                     'content-type': 'application/json'
                 },
-                success: function(res) {
-                    let _posts = res.data.lecture;
-                    _posts = _posts.map(ParsePost);
-                    
-                    posts = _posts;
-                    cb(posts);
-                }
+                success: res => cb(posts = res.data.lecture.map(ParsePost))
             });
         },
         getUserInfo(cb) {
@@ -55,6 +52,17 @@
                         this.globalData.userInfo = res.userInfo
                     )
                 })
+            });
+        },
+        fav(id) {
+            let post = this.getPost(id);
+            [post.loved, favorites] =
+                post.loved[0] == 'u' ?
+                    ['loved', favorites.concat([id])] :
+                    ['unloved', favorites.filter(fav_id => fav_id != id)];
+            wx.setStorageSync('favorites', favorites);
+            wx.redirectTo({
+              url: '../index/index'
             });
         }
     });

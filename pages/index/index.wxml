@@ -5,7 +5,7 @@
             <view class="post-description" wx:for="{{post.descriptions}}" wx:for-item="description" wx:key="null">
                 <text>{{description}}</text>
             </view>
-            <!--<view class="icon post-love {{post.loved}}"></view>-->
+            <view id="fav-{{post.id}}" class="icon post-love {{post.loved}}" catchtap="fav"></view>
         </view>
         <view class="hr"></view>
         <view class="post-preview">{{post.content}}</view>
