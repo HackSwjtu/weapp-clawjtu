@@ -1,0 +1,48 @@
+#post-container {
+    height: 100%;
+    width: 100%;
+}
+.post {
+    position: relative;
+    --padding: 30rpx;
+    --margin: 30rpx;
+    margin: var(--margin);
+    border-radius: 8rpx;
+    background-color: white;
+    box-shadow: 0 4rpx 8rpx 2rpx rgba(0, 0, 0, 0.25);
+}
+.post-info {
+    position: relative;
+    padding: var(--padding);
+}
+.post-title {
+    font-size: 32rpx;
+    color: rgb(88, 89, 91);
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+.post-description text {
+    display: block;
+    font-size: 24rpx;
+    color: rgb(187, 187, 188);
+}
+.post-preview {
+    padding: var(--padding);
+    font-size: 28rpx;
+    color: rgb(88, 89, 91);
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+.post-love {
+    position: absolute;
+    right: var(--padding);
+    bottom: var(--padding);
+    background-image: url(../../images/love.png);
+    background-size: contain;
+    background-position: cener center;
+    height: 25;
+}
+.post-love.unloved {
+    filter: grayscale();
+}

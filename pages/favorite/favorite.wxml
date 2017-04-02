@@ -11,17 +11,3 @@
         <view class="post-preview">{{post.content}}</view>
     </view></navigator>
 </scroll-view>
-<view id="banner">
-    <image id="avatar" src="{{userInfo.avatarUrl}}" mode="aspectFit"></image>
-    <text id="nickname">{{userInfo.nickName}}</text>
-    <view style="flex-grow: 1"></view>
-    <navigator url="../favorite/favorite"><image id="favorite" src="../../images/favorite.png" mode="aspectFit"></image></navigator>
-</view>
-<view id="tablet" class="w100p">
-    <navigator class="tablet" open-type="redirectTo" url="index">
-        <image src="../../images/speech.png" class="icon active"></image>
-    </navigator>
-    <view class="tablet" bindtap="tapCompetition">
-        <image src="../../images/trophy.png" class="icon"></image>
-    </view>
-</view>
