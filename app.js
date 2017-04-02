@@ -1,26 +1,4 @@
 {
-    let posts, favorites = wx.getStorageSync('favorites');
-    if(!(favorites instanceof Array))
-        favorites = [];
-    let ParsePost = post => {
-        post.time = "讲座时间：" + post.time;
-        ['speaker', 'time', 'place'].forEach(key => post[key] = post[key].replace(/ ?[：:] ?/, '：'));
-        post.detail = post.detail
-            .slice(0, post.detail.indexOf('>>我要'))
-            .slice(post.detail.indexOf('讲座内容：') + 5);
-        let result =  {
-            title: post.title,
-            id: post.id,
-            descriptions: [
-                post.speaker,
-                post.time,
-                post.place
-            ],
-            content: post.detail,
-            loved: favorites.some(id => id == post.id) ? "loved" : "unloved"
-        };
-        return result;
-    };
     let HandleUserInfo = (cb, userInfo) => {
         if(typeof cb == 'function')
             cb(userInfo);
@@ -28,10 +6,31 @@
     App({
         globalData: {
             userInfo: null,
+            posts: null,
+            favorites: wx.getStorageSync('favorites') || [],
             posts: null
         },
         getPost(id) {
-            return posts.filter(post => (post.id == id))[0];
+            return this.globalData.posts.filter(post => (post.id == id))[0];
+        },
+        parsePost(post) {
+            post.time = "讲座时间：" + post.time;
+            ['speaker', 'time', 'place'].forEach(key => post[key] = post[key].replace(/ ?[：:] ?/, '：'));
+            post.detail = post.detail
+                .slice(0, post.detail.indexOf('>>我要'))
+                .slice(post.detail.indexOf('讲座内容：') + 5);
+            let result =  {
+                title: post.title,
+                id: post.id,
+                descriptions: [
+                    post.speaker,
+                    post.time,
+                    post.place
+                ],
+                content: post.detail,
+                loved: this.globalData.favorites.some(id => id == post.id) ? "loved" : "unloved"
+            };
+            return result;
         },
         getPosts(cb) {
             wx.request({
@@ -39,7 +38,7 @@
                 header: {
                     'content-type': 'application/json'
                 },
-                success: res => cb(posts = res.data.lecture.map(ParsePost))
+                success: res => cb(this.globalData.posts = res.data.lecture.map(this.parsePost))
             });
         },
         getUserInfo(cb) {
@@ -54,16 +53,13 @@
                 })
             });
         },
-        fav(id) {
-            let post = this.getPost(id);
-            [post.loved, favorites] =
-                post.loved[0] == 'u' ?
-                    ['loved', favorites.concat([id])] :
-                    ['unloved', favorites.filter(fav_id => fav_id != id)];
-            wx.setStorageSync('favorites', favorites);
-            wx.redirectTo({
-              url: '../index/index'
-            });
+        getFavs(cb) {
+            cb(this.globalData.favorites);
+        },
+        toggleFavs(id, cb) {
+            this.globalData.favorites[id] = !this.globalData.favorites[id];
+            wx.setStorageSync('favorites', this.globalData.favorites);
+            cb(this.globalData.favorites);
         }
     });
 }
