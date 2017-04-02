@@ -31,10 +31,15 @@
     padding: var(--padding);
 }
 .post-title {
+    display: block;
+    width: calc(100% - 2 * var(--padding) - 50rpx);
     font-size: 32rpx;
     color: rgb(88, 89, 91);
     font-weight: 700;
     margin-bottom: 10px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
 }
 .post-description text {
     display: block;
@@ -52,11 +57,7 @@
 .post-love {
     position: absolute;
     right: var(--padding);
-    bottom: var(--padding);
-    background-image: url(../../images/love.png);
-    background-size: contain;
-    background-position: cener center;
-    height: 25;
+    top: var(--padding);
 }
 .post-love.unloved {
     filter: grayscale();

@@ -5,8 +5,8 @@
             <view class="post-description" wx:for="{{post.descriptions}}" wx:for-item="description" wx:key="null">
                 <text>{{description}}</text>
             </view>
-            <view id="fav-{{post.id}}" class="icon post-love {{favs[post.id] ? 'loved' : 'unloved'}}" catchtap="tapFavIcon"></view>
         </view>
+        <image id="fav-{{post.id}}" class="icon post-love {{favs[post.id] ? 'loved' : 'unloved'}}" catchtap="tapFavIcon" src="../../images/love.png" mode="aspectFit"></image>
         <view class="hr"></view>
         <view class="post-preview">{{post.content}}</view>
     </view></navigator>
