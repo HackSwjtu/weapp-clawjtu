@@ -11,54 +11,6 @@
     width: 50rpx;
 }
 #post-container {
-    --margin: 30rpx;
-    position: absolute;
-    top: var(--banner-height);
-    padding-bottom: var(--margin);
     height: calc(100% - var(--banner-height) - var(--tablet-height));
-    width: 100%;
-}
-.post {
-    position: relative;
-    --padding: 30rpx;
-    margin: var(--margin);
-    border-radius: 8rpx;
-    background-color: white;
-    box-shadow: 0 4rpx 8rpx 2rpx rgba(0, 0, 0, 0.25);
-}
-.post-info {
-    position: relative;
-    padding: var(--padding);
-}
-.post-title {
-    display: block;
-    width: calc(100% - 2 * var(--padding) - 50rpx);
-    font-size: 32rpx;
-    color: rgb(88, 89, 91);
-    font-weight: 700;
-    margin-bottom: 10px;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
-}
-.post-description text {
-    display: block;
-    font-size: 24rpx;
-    color: rgb(187, 187, 188);
-}
-.post-preview {
-    padding: var(--padding);
-    font-size: 28rpx;
-    color: rgb(88, 89, 91);
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
-}
-.post-love {
-    position: absolute;
-    right: var(--padding);
-    top: var(--padding);
-}
-.post-love.unloved {
-    filter: grayscale();
+    top: var(--banner-height);
 }
