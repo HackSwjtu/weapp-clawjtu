@@ -34,20 +34,39 @@ App({
     parseLectureDetail(_detail_str) {
         return _detail_str;
     },
-    parseLecture(_lecture_obj) {
+    parseLecture(_lecture_obj, _favorited) {
         return {
             title: _lecture_obj.title,
             place: _lecture_obj.place,
             time: _lecture_obj.time,
             speacker: _lecture_obj.speacker,
             speacker_brief: _lecture_obj.speacker_brif,
-            detail: this.parseLectureDetail(_lecture_obj.detail)
+            detail: this.parseLectureDetail(_lecture_obj.detail),
+            favorited: !!_favorited
         }
     },
     parseLectures(_lecture_arr) {
-        this.globalData.lectures = new Map(
-            _lecture_arr.map(_lecture_obj => [_lecture_obj.id, this.parseLecture(_lecture_obj)])
-        );
+        wx.getStorage({
+            key: 'lecture_favorited',
+            success(_res) {
+                this.globalData.lectures = new Map(
+                    _lecture_arr.map(_lecture_obj => [
+                        _lecture_obj.id,
+                        this.parseLecture(_lecture_obj),
+                        _res.data[_lecture_obj.id]
+                    ])
+                );
+            },
+            fail() {
+                this.globalData.lectures = new Map(
+                    _lecture_arr.map(_lecture_obj => [
+                        _lecture_obj.id,
+                        this.parseLecture(_lecture_obj),
+                        false
+                    ])
+                );
+            }
+        });
     },
     refreshLectures(_options) {
         wx.request({
