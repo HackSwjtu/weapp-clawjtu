@@ -16,9 +16,12 @@
         parsePost(post) {
             post.time = "讲座时间：" + post.time;
             ['speaker', 'time', 'place'].forEach(key => post[key] = post[key].replace(/ ?[：:] ?/, '：'));
+            post.detail = post.detail.replace(/[\r\n]/g, '');
+            let detail_splitter = post.detail.match(/内容.*?[：:] ?/);
+            console.log(detail_splitter);
             post.detail = post.detail
                 .slice(0, post.detail.indexOf('>>我要'))
-                .slice(post.detail.indexOf('讲座内容：') + 5);
+                .slice(detail_splitter.index + detail_splitter[0].length);
             let result =  {
                 title: post.title,
                 id: post.id,
