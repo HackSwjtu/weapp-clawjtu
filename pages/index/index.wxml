@@ -1,6 +1,6 @@
 <scroll-view id="post-container" scroll-y="true" enable-back-to-top="true">
-    <view class="post" wx:for="{{posts}}" wx:for-item="post" url="../speech/speech?id={{post.id}}" wx:key="null">
-        <navigator>
+    <view class="post" wx:for="{{posts}}" wx:for-item="post" wx:key="null">
+        <navigator url="../speech/speech?id={{post.id}}">
             <view class="post-info">
                 <text class="post-title">{{post.title}}</text>
                 <view class="post-description" wx:for="{{post.descriptions}}" wx:for-item="description" wx:key="null">

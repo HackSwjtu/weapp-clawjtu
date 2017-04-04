@@ -18,7 +18,6 @@
             ['speaker', 'time', 'place'].forEach(key => post[key] = post[key].replace(/ ?[：:] ?/, '：'));
             post.detail = post.detail.replace(/[\r\n]/g, '');
             let detail_splitter = post.detail.match(/内容.*?[：:] ?/);
-            console.log(detail_splitter);
             post.detail = post.detail
                 .slice(0, post.detail.indexOf('>>我要'))
                 .slice(detail_splitter.index + detail_splitter[0].length);
