@@ -1,67 +1,71 @@
-{
-    let HandleUserInfo = (cb, userInfo) => {
-        if(typeof cb == 'function')
-            cb(userInfo);
-    };
-    App({
-        globalData: {
-            userInfo: null,
-            posts: null,
-            favorites: wx.getStorageSync('favorites') || [],
-            posts: null
-        },
-        getPost(id) {
-            return this.globalData.posts.filter(post => (post.id == id))[0];
-        },
-        parsePost(post) {
-            post.time = "讲座时间：" + post.time;
-            ['speaker', 'time', 'place'].forEach(key => post[key] = post[key].replace(/ ?[：:] ?/, '：'));
-            post.detail = post.detail.replace(/[\r\n]/g, '');
-            let detail_splitter = post.detail.match(/内容.*?[：:] ?/);
-            post.detail = post.detail
-                .slice(0, post.detail.indexOf('>>我要'))
-                .slice(detail_splitter.index + detail_splitter[0].length);
-            let result =  {
-                title: post.title,
-                id: post.id,
-                descriptions: [
-                    post.speaker,
-                    post.time,
-                    post.place
-                ],
-                content: post.detail,
-                loved: this.globalData.favorites.some(id => id == post.id) ? "loved" : "unloved"
-            };
-            return result;
-        },
-        getPosts(cb) {
-            wx.request({
-                url: 'https://api.hackswjtu.com/lecture/lastweek',
-                header: {
-                    'content-type': 'application/json'
-                },
-                success: res => cb(this.globalData.posts = res.data.lecture.map(this.parsePost))
-            });
-        },
-        getUserInfo(cb) {
-            this.globalData.userInfo ?
-                HandleUserInfo(cb, this.globalData.userInfo) :
-                wx.login({
-                  success: () => wx.getUserInfo({
-                    success: res => HandleUserInfo(
-                        cb,
-                        this.globalData.userInfo = res.userInfo
-                    )
-                })
-            });
-        },
-        getFavs(cb) {
-            cb(this.globalData.favorites);
-        },
-        toggleFavs(id, cb) {
-            this.globalData.favorites[id] = !this.globalData.favorites[id];
-            wx.setStorageSync('favorites', this.globalData.favorites);
-            cb(this.globalData.favorites);
+App({
+    globalData: {
+        userInfo: null,
+        lectures: null
+    },
+    refreshUserInfo(_options) {
+        let fail = function() {
+            this.globalData.userInfo = null;
+            _options.fail();
         }
-    });
-}
+        wx.login({
+            success() {
+                wx.getUserInfo({
+                    success(_res){
+                        this.globalData.userInfo = _res.userInfo;
+                        _options.success(this.globalData.userInfo);
+                    },
+                    fail: fail
+                });
+            },
+            fail: fail
+        });
+    },
+    getUserInfo(_options) {
+        wx.checkSession({
+            success() {
+                _options.success(this.globalData.userInfo);
+            },
+            fail() {
+                this.refreshUserInfo(_options);
+            }
+        });
+    },
+    parseLectureDetail(_detail_str) {
+        return _detail_str;
+    },
+    parseLecture(_lecture_obj) {
+        return {
+            title: _lecture_obj.title,
+            place: _lecture_obj.place,
+            time: _lecture_obj.time,
+            speacker: _lecture_obj.speacker,
+            speacker_brief: _lecture_obj.speacker_brif,
+            detail: this.parseLectureDetail(_lecture_obj.detail)
+        }
+    },
+    parseLectures(_lecture_arr) {
+        this.globalData.lectures = new Map(
+            _lecture_arr.map(_lecture_obj => [_lecture_obj.id, this.parseLecture(_lecture_obj)])
+        );
+    },
+    refreshLectures(_options) {
+        wx.request({
+          url: 'https://api.hackswjtu.com/lecture/lastweek',
+          success(_res) {
+              this.globalData.lectures = parseLectures(_res.data.lecture);
+              _options.success(this.globalData.lectures);
+          },
+          fail() {
+              this.globalData.lectures = null;
+              _options.fail();
+          }
+        })
+    },
+    getLectures(_options) {
+        if(this.globalData.lectures !== null)
+            _options.success(this.globalData.lectures);
+        else
+            refreshLectures(_options);
+    }
+});

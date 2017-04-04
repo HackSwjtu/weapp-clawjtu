@@ -1,7 +1,7 @@
 let app = getApp();
 Page({
   data: {
-    userInfo: {},
+    userInfo: null,
     favs: null,
     posts: null
   },
@@ -9,9 +9,11 @@ Page({
     wx.setNavigationBarTitle({
       title: 'Clawjtu'
     })
-    app.getUserInfo(userInfo => this.setData({
-      userInfo: userInfo
-    }));
+    app.getUserInfo({
+      success: userInfo => this.setData({
+        userInfo: userInfo
+      })
+    });
     app.getPosts(posts => this.setData({
       posts: posts
     }));
