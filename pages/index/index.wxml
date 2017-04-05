@@ -21,9 +21,9 @@
 </view>
 <view id="tablet" class="w100p">
     <navigator class="tablet" open-type="redirectTo" url="index">
-        <image src="../../images/speech.png" class="icon active"></image>
+        <image src="../../images/speech.png" class="icon"></image>
     </navigator>
     <view class="tablet" bindtap="tapCompetition">
-        <image src="../../images/trophy.png" class="icon"></image>
+        <image src="../../images/trophy.png" class="icon active"></image>
     </view>
 </view>
