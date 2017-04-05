@@ -10,23 +10,23 @@
             <view class="hr"></view>
             <view class="post-preview">{{post.detail}}</view>
         </navigator>
-        <image id="fav-{{post.id}}" class="icon post-love {{favs[post.id] ? 'loved' : 'unloved'}}" src="../../images/love.png" mode="aspectFit"></image>
+        <image id="fav-{{post.id}}" class="icon post-love" src="../../images/love.png" mode="aspectFit"></image>
     </view>
 </scroll-view>
 <view id="banner">
     <image id="avatar" src="{{userInfo.avatarUrl}}" mode="aspectFit"></image>
     <text id="nickname">{{userInfo.nickName}}</text>
     <view style="flex-grow: 1"></view>
-    <navigator url="../favorite/favorite" id="favorite"><image class="icon" src="../../images/favorite.png" mode="aspectFit"></image></navigator>
+    <view id="favorite"><image class="icon" src="../../images/favorite.png" mode="aspectFit"></image></view>
 </view>
 <view id="tablet" class="w100p">
-    <view class="tablet">
+    <view class="tablet" bindtap="getPosts">
         <image src="../../images/home.png" class="icon"></image>
     </view>
-    <view class="tablet">
+    <view class="tablet" bindtap="getLectures">
         <image src="../../images/speech.png" class="icon"></image>
     </view>
-    <view class="tablet">
+    <view class="tablet" bindtap="getCompetitions">
         <image src="../../images/trophy.png" class="icon"></image>
     </view>
 </view>
