@@ -8,17 +8,17 @@
     background-position: center center;
     background-size: contain;
 }
-.content-block {
-    --vmargin: 30rpx;
-    --hmargin: 60rpx;
-    margin: var(--vmargin) var(--hmargin);
-}
-.speech-description {
+.post-description {
     display: block;
     font-size: 32rpx;
     font-weight: 700;
 }
-#content {
+#detail {
     font-size: 30rpx;
     line-height: 125%;
+}
+.detail-block {
+    --vmargin: 30rpx;
+    --hmargin: 60rpx;
+    margin: var(--vmargin) var(--hmargin);
 }

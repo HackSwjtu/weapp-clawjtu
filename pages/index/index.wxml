@@ -1,6 +1,6 @@
-<scroll-view id="post-container" scroll-y="true" enable-back-to-top="true">
+<scroll-view id="post-container" scroll-y="true" enable-back-to-top="true" scroll-top="{{scroll_top}}">
     <view class="post" wx:for="{{posts}}" wx:for-item="post" wx:key="null">
-        <navigator url="../speech/speech?id={{post.id}}">
+        <navigator url="../detail/detail?id={{post.id}}">
             <view class="post-info">
                 <text class="post-title">{{post.title}}</text>
                 <view class="post-description" wx:for="{{post.descriptions}}" wx:for-item="description" wx:key="null">
@@ -8,22 +8,25 @@
                 </view>
             </view>
             <view class="hr"></view>
-            <view class="post-preview">{{post.content}}</view>
+            <view class="post-preview">{{post.detail}}</view>
         </navigator>
-        <image id="fav-{{post.id}}" class="icon post-love {{favs[post.id] ? 'loved' : 'unloved'}}" catchtap="tapFavIcon" src="../../images/love.png" mode="aspectFit"></image>
+        <image id="fav-{{post.id}}" class="icon post-love {{post.favorited ? 'loved' : 'unloved'}}" src="../../images/love.png" mode="aspectFit" catchtap="toggleFav"></image>
     </view>
 </scroll-view>
 <view id="banner">
     <image id="avatar" src="{{userInfo.avatarUrl}}" mode="aspectFit"></image>
     <text id="nickname">{{userInfo.nickName}}</text>
     <view style="flex-grow: 1"></view>
-    <navigator url="../favorite/favorite" id="favorite"><image class="icon" src="../../images/favorite.png" mode="aspectFit"></image></navigator>
+    <view id="favorite" bindtap="getFavs"><image class="icon" src="../../images/favorite.png" mode="aspectFit"></image></view>
 </view>
 <view id="tablet" class="w100p">
-    <navigator class="tablet" open-type="redirectTo" url="index">
+    <view class="tablet" bindtap="getPosts">
+        <image src="../../images/home.png" class="icon"></image>
+    </view>
+    <view class="tablet" bindtap="getLectures">
         <image src="../../images/speech.png" class="icon"></image>
-    </navigator>
-    <view class="tablet" bindtap="tapCompetition">
-        <image src="../../images/trophy.png" class="icon active"></image>
+    </view>
+    <view class="tablet" bindtap="getCompetitions">
+        <image src="../../images/trophy.png" class="icon"></image>
     </view>
 </view>
