@@ -35,14 +35,11 @@
 }
 .post-title {
     display: block;
-    width: calc(100% - 2 * var(--padding) - 50rpx);
+    width: calc(100% - var(--padding) - 50rpx);
     font-size: 32rpx;
     color: rgb(88, 89, 91);
     font-weight: 700;
     margin-bottom: 10px;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
 }
 .post-description text {
     display: block;
