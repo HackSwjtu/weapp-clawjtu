@@ -1,0 +1,7 @@
+<view id="title" class="detail-block">{{post.title}}<text class="medal icon" style="vertical-align: middle"></text></view>
+<view class="hr"></view>
+<view class="detail-block">
+    <text class="post-description" wx:for="{{post.descriptions}}" wx:for-item="description" wx:key="null">{{description}}</text>
+</view>
+<view class="hr"></view>
+<view id="detail" class="detail-block">{{post.detail}}</view>

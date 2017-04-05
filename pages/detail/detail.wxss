@@ -1,3 +1,24 @@
-#post-container {
-    height: 100%;
+#title {
+    font-size: 48rpx;
+    font-weight: 700;
+}
+.medal {
+    display: inline-block;
+    background-image: url(../../images/medal.png);
+    background-position: center center;
+    background-size: contain;
+}
+.post-description {
+    display: block;
+    font-size: 32rpx;
+    font-weight: 700;
+}
+#detail {
+    font-size: 30rpx;
+    line-height: 125%;
+}
+.detail-block {
+    --vmargin: 30rpx;
+    --hmargin: 60rpx;
+    margin: var(--vmargin) var(--hmargin);
 }
