@@ -8,9 +8,9 @@
                 </view>
             </view>
             <view class="hr"></view>
-            <view class="post-preview">{{post.content}}</view>
+            <view class="post-preview">{{post.detail}}</view>
         </navigator>
-        <image id="fav-{{post.id}}" class="icon post-love {{favs[post.id] ? 'loved' : 'unloved'}}" catchtap="tapFavIcon" src="../../images/love.png" mode="aspectFit"></image>
+        <image id="fav-{{post.id}}" class="icon post-love {{favs[post.id] ? 'loved' : 'unloved'}}" src="../../images/love.png" mode="aspectFit"></image>
     </view>
 </scroll-view>
 <view id="banner">
@@ -20,10 +20,13 @@
     <navigator url="../favorite/favorite" id="favorite"><image class="icon" src="../../images/favorite.png" mode="aspectFit"></image></navigator>
 </view>
 <view id="tablet" class="w100p">
-    <navigator class="tablet" open-type="redirectTo" url="index">
-        <image src="../../images/speech.png" class="icon active"></image>
-    </navigator>
-    <view class="tablet" bindtap="tapCompetition">
+    <view class="tablet">
+        <image src="../../images/home.png" class="icon"></image>
+    </view>
+    <view class="tablet">
+        <image src="../../images/speech.png" class="icon"></image>
+    </view>
+    <view class="tablet">
         <image src="../../images/trophy.png" class="icon"></image>
     </view>
 </view>

@@ -1,7 +1,6 @@
 {
   "pages":[
     "pages/index/index",
-    "pages/speech/speech",
-    "pages/favorite/favorite"
+    "pages/detail/detail"
   ]
 }
