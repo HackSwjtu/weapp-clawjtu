@@ -79,7 +79,7 @@
     text-align: center;
     background-color: white;
 }
-#favorite {
+#fav {
     margin-right: 60rpx;
     height: 50rpx;
     width: 50rpx;

@@ -19,47 +19,23 @@ Page({
   setPosts(_posts) {
     this.setData({posts: _posts});
   },
-  getLectures() {
-    if(this.data.status !== 'lectures')
+  getPosts(_type) {
+    if(this.data.status !== _type)
       this.backToTop();
-    this.setData({status: 'lectures'});
-    app.getLectures({success: this.setPosts});
+    this.setData({status: _type});
+    app.getPostsByType({
+      type: _type,
+      success: this.setPosts
+    });
   },
-  getCompetitions() {
-    if(this.data.status !== 'competitions')
-      this.backToTop();
-    this.setData({status: 'competitions'});
-    app.getCompetitions({success: this.setPosts});
-  },
-  getPosts() {
-    if(this.data.status !== 'all')
-      this.backToTop();
-    this.setData({status: 'all'});
-    app.getPosts({success: this.setPosts});
-  },
-  getFavs() {
-    if(this.data.status !== 'favs')
-      this.backToTop();
-    this.setData({status: 'favs'});
-    app.getFavs({success: this.setPosts});
+  getPostsByEvent(_event) {
+    this.getPosts(_event.currentTarget.id);
   },
   refreshPosts() {
     app.refreshPosts({success: this.setPosts});
   },
   getCurrent() {
-    switch(this.data.status) {
-      case 'competitions':
-        this.getCompetitions();
-        break;
-      case 'lectures':
-        this.getLectures();
-        break;
-      case 'favs':
-        this.getFavs();
-        break;
-      default:
-        this.getPosts();
-    }
+    this.getPosts(this.data.status);
   },
   onLoad(_option) {
     wx.setNavigationBarTitle({title: 'Clawjtu'});

@@ -17,16 +17,16 @@
     <image id="avatar" src="{{userInfo.avatarUrl}}" mode="aspectFit"></image>
     <text id="nickname">{{userInfo.nickName}}</text>
     <view style="flex-grow: 1"></view>
-    <view id="favorite" bindtap="getFavs"><image class="icon" src="../../images/favorite.png" mode="aspectFit"></image></view>
+    <view id="fav" bindtap="getPostsByEvent"><image class="icon" src="../../images/favorite.png" mode="aspectFit"></image></view>
 </view>
 <view id="tablet" class="w100p">
-    <view class="tablet" bindtap="getPosts">
+    <view class="tablet" id="all" bindtap="getPostsByEvent">
         <image src="../../images/home.png" class="icon"></image>
     </view>
-    <view class="tablet" bindtap="getLectures">
+    <view class="tablet" id="lecture" bindtap="getPostsByEvent">
         <image src="../../images/speech.png" class="icon"></image>
     </view>
-    <view class="tablet" bindtap="getCompetitions">
+    <view class="tablet" id="competition" bindtap="getPostsByEvent">
         <image src="../../images/trophy.png" class="icon"></image>
     </view>
 </view>
