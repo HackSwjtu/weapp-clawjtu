@@ -53,7 +53,7 @@ App({
         }
     },
     refreshUserInfo(_options) {
-        let fail = () => {
+        let _fail = () => {
             this.globalData.userInfo = null;
             _options.fail && _options.fail();
         };
@@ -64,21 +64,21 @@ App({
                         this.globalData.userInfo = _res.userInfo;
                         _options.success(this.globalData.userInfo);
                     },
-                    fail: fail
+                    fail: _fail
                 });
             },
-            fail: fail
+            fail: _fail
         });
     },
     getUserInfo(_options) {
-        let fail = () => this.refreshUserInfo(_options);
+        let _fail = () => this.refreshUserInfo(_options);
         if(this.globalData.userInfo !== null)
             wx.checkSession({
                 success: () => _options.success(this.globalData.userInfo),
-                fail: fail
+                fail: _fail
             });
         else
-            fail();
+            _fail();
     },
     refreshPostsByType(_options) {
         wx.request({
