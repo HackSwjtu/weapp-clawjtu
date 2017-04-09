@@ -54,6 +54,7 @@ App({
     },
     refreshUserInfo(_options) {
         let _fail = () => {
+            console.log(1);
             this.globalData.userInfo = null;
             _options.fail && _options.fail();
         };
@@ -72,13 +73,8 @@ App({
     },
     getUserInfo(_options) {
         let _fail = () => this.refreshUserInfo(_options);
-        if(this.globalData.userInfo !== null)
-            wx.checkSession({
-                success: () => _options.success(this.globalData.userInfo),
-                fail: _fail
-            });
-        else
-            _fail();
+        if(!this.globalData.userInfo)
+            !this.refreshUserInfo(_options);
     },
     refreshPostsByType(_options) {
         wx.request({
@@ -94,20 +90,10 @@ App({
         });
     },
     getPostsByType(_options) {
-        switch(_options.type) {
-            case 'fav':
-                return this.getPosts({
-                    success: _posts => _options.success(_posts.filter(_post => _post.favorited)),
-                    fail: () => _options.fail && _options.fail()
-                });
-            case 'all':
-                return this.getPosts(_options);
-            default:
-                if(this.globalData[_options.type + 's'] !== null)
-                    _options.success(mapToArray(this.globalData[_options.type + 's']));
-                else
-                    this.refreshPostsByType(_options);
-        }
+        if(this.globalData[_options.type + 's'] !== null)
+            _options.success(mapToArray(this.globalData[_options.type + 's']).sort(compareTime));
+        else
+            this.refreshPostsByType(_options);
     },
     refreshPosts(_options) {
         let _result;
@@ -120,21 +106,27 @@ App({
                     fail: _options.fail
                 });
             },
+            fail: () => _options.fail && _options.fail()
+        });
+    },
+    getEachTypesOfPosts(_options, _types, _results = []) {
+        let _current_type = _types.shift();
+        let _current_options = {fail: _options.fail};
+        let _success = _res => {
+            _results = _results.concat(_res);
+            _types.length ? this.getEachTypesOfPosts(_options, _types, _results) : _options.success(_results.sort(compareTime));
+        };
+        this.getPostsByType({
+            type: _current_type,
+            success: _success,
             fail: _options.fail
         });
     },
     getPosts(_options) {
-        this.getPostsByType({
-            type: 'lecture',
-            success: _lectures => {
-                this.getPostsByType({
-                    type: 'competition',
-                    success: _competitions => _options.success(_lectures.concat(_competitions).sort(compareTime)),
-                    fail: _options.fail
-                });
-            },
-            fail: () => _options.fail && _options.fail()
-        });
+        this.getEachTypesOfPosts(_options, [
+            'lecture',
+            'competition'
+        ]);
     },
     toggleFav(_options) {
         let _type = _options.id.slice(0, _options.id.indexOf('_'));
@@ -149,5 +141,8 @@ App({
             ),
             success: _options.success
         });
+    },
+    onLaunch() {
+        wx.setNavigationBarTitle({title: 'Clawjtu'});
     }
 });

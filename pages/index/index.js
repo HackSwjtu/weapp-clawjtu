@@ -23,6 +23,14 @@ Page({
     if(this.data.status !== _type)
       this.backToTop();
     this.setData({status: _type});
+    if(_type == 'fav')
+      return app.getPosts({
+        success: _posts => this.setPosts(_posts.filter(_post => _post.favorited))
+      });
+    if(_type == 'all')
+      return app.getPosts({
+        success: this.setPosts
+      });
     app.getPostsByType({
       type: _type,
       success: this.setPosts
@@ -37,11 +45,8 @@ Page({
   getCurrent() {
     this.getPosts(this.data.status);
   },
-  onLoad(_option) {
-    wx.setNavigationBarTitle({title: 'Clawjtu'});
-    app.getUserInfo({
-      success: _userInfo => this.setData({userInfo: _userInfo})
-    });
-    this.refreshPosts(_option);
+  onLoad() {
+    this.getPosts('all');
+    app.getUserInfo({success: _userInfo => this.setData({userInfo: _userInfo})});
   }
 });
